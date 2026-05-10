@@ -1,9 +1,19 @@
 name: Events Demo 1
+run-name: Deploy to ${{ inputs.deploy_target }} by @${{github.actor}}
 on: 
   pull_request: 
     types:
       - opened
-  workflow_dispatch: 
+    branches: 
+      - main 
+      - dev
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+    paths-ignore:
+      - '.github/workflows/*'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
